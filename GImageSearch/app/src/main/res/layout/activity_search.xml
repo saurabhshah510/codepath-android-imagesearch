@@ -25,7 +25,8 @@
         android:id="@+id/btnSearch"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="onClickSearch"/>
 
     <GridView
         android:layout_width="wrap_content"
