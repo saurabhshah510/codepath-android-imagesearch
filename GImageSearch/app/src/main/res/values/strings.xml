@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">GImageSearch</string>
+    <string name="search_prompt">Enter Search Query</string>
+    <string name="search_button_text">Search</string>
+</resources>
