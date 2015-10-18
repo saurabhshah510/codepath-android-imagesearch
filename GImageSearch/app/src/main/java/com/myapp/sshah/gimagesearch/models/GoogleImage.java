@@ -1,4 +1,4 @@
-package com.myapp.sshah.gimagesearch.model;
+package com.myapp.sshah.gimagesearch.models;
 
 import org.json.JSONArray;
 import org.json.JSONException;

@@ -1,4 +1,4 @@
-package com.myapp.sshah.gimagesearch;
+package com.myapp.sshah.gimagesearch.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,9 +8,9 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import com.myapp.sshah.gimagesearch.activity.CallbackActivity;
+import com.myapp.sshah.gimagesearch.R;
 import com.myapp.sshah.gimagesearch.api.GoogleImageClient;
-import com.myapp.sshah.gimagesearch.model.GoogleImage;
+import com.myapp.sshah.gimagesearch.models.GoogleImage;
 
 import java.util.ArrayList;
 

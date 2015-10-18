@@ -1,6 +1,6 @@
-package com.myapp.sshah.gimagesearch.activity;
+package com.myapp.sshah.gimagesearch.activities;
 
-import com.myapp.sshah.gimagesearch.model.GoogleImage;
+import com.myapp.sshah.gimagesearch.models.GoogleImage;
 
 import java.util.ArrayList;
 

@@ -4,8 +4,8 @@ import android.util.Log;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
-import com.myapp.sshah.gimagesearch.activity.CallbackActivity;
-import com.myapp.sshah.gimagesearch.model.GoogleImage;
+import com.myapp.sshah.gimagesearch.activities.CallbackActivity;
+import com.myapp.sshah.gimagesearch.models.GoogleImage;
 
 import org.json.JSONArray;
 import org.json.JSONException;
