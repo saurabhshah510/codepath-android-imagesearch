@@ -39,8 +39,11 @@ public class SearchActivity extends AppCompatActivity implements CallbackActivit
     }
 
     @Override
-    public void onFetchSuccess(ArrayList<GoogleImage> imageResults) {
-        Log.i("DEBUG", "Adding " + imageResults.size() + " Photos");
+    public void onFetchSuccess(ArrayList<GoogleImage> fetchedImageResults) {
+        Log.i("DEBUG", "Adding " + fetchedImageResults.size() + " Photos");
+        //Clear in case of new search
+        imageResults.clear();
+        imageResults.addAll(fetchedImageResults);
     }
 
     @Override

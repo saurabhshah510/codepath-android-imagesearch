@@ -13,7 +13,6 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -55,18 +54,7 @@ public class GoogleImageClient {
                 super.onSuccess(statusCode, headers, response);
                 try{
                     JSONArray jsonImageArray = response.getJSONObject("responseData").getJSONArray("results");
-                    ArrayList<GoogleImage> imageResults = new ArrayList<GoogleImage>();
-                    for(int i = 0; i< jsonImageArray.length(); i++){
-                        JSONObject jsonImageObject = jsonImageArray.getJSONObject(i);
-                        GoogleImage image = new GoogleImage();
-                        image.fullUrl = jsonImageObject.getString("url");
-                        image.thumbUrl = jsonImageObject.getString("tbUrl");
-                        image.height = jsonImageObject.getInt("height");
-                        image.width = jsonImageObject.getInt("width");
-                        image.title = jsonImageObject.getString("titleNoFormatting");
-                        imageResults.add(image);
-                    }
-                    activity.onFetchSuccess(imageResults);
+                    activity.onFetchSuccess(GoogleImage.fromJSONArray(jsonImageArray));
                 }catch(JSONException ex){
                     Log.i("ERROR", "Couldnt parse response JSON");
                     ex.printStackTrace();
