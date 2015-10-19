@@ -9,6 +9,7 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.myapp.sshah.gimagesearch.R;
+import com.myapp.sshah.gimagesearch.adapters.ImageResultsAdapter;
 import com.myapp.sshah.gimagesearch.api.GoogleImageClient;
 import com.myapp.sshah.gimagesearch.models.GoogleImage;
 
@@ -18,13 +19,16 @@ public class SearchActivity extends AppCompatActivity implements CallbackActivit
     private EditText etSearchQuery;
     private GridView gvSearchResults;
     private ArrayList<GoogleImage> imageResults;
+    private ImageResultsAdapter aImageResults;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        imageResults = new ArrayList<>();
         setupViews();
+        imageResults = new ArrayList<>();
+        aImageResults = new ImageResultsAdapter(this, imageResults);
+        gvSearchResults.setAdapter(aImageResults);
     }
 
     private void setupViews(){
@@ -43,7 +47,7 @@ public class SearchActivity extends AppCompatActivity implements CallbackActivit
         Log.i("DEBUG", "Adding " + fetchedImageResults.size() + " Photos");
         //Clear in case of new search
         imageResults.clear();
-        imageResults.addAll(fetchedImageResults);
+        aImageResults.addAll(fetchedImageResults);
     }
 
     @Override
