@@ -21,7 +21,7 @@ public class GoogleImage {
         this.thumbUrl = jsonImageObject.getString("tbUrl");
         this.height = jsonImageObject.getInt("height");
         this.width = jsonImageObject.getInt("width");
-        this.title = jsonImageObject.getString("titleNoFormatting");
+        this.title = jsonImageObject.getString("title");
     }
 
     public static ArrayList<GoogleImage> fromJSONArray(JSONArray jsonImageArray) throws JSONException{

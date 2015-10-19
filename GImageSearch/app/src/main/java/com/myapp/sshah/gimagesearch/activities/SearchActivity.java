@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import com.myapp.sshah.gimagesearch.R;
 import com.myapp.sshah.gimagesearch.adapters.ImageResultsAdapter;
@@ -38,7 +37,6 @@ public class SearchActivity extends AppCompatActivity implements CallbackActivit
 
     public void onClickSearch(View view) {
         String query = etSearchQuery.getText().toString();
-        Toast.makeText(this, query, Toast.LENGTH_SHORT).show();
         GoogleImageClient.getSharedClient().fetchImages(this, query);
     }
 
