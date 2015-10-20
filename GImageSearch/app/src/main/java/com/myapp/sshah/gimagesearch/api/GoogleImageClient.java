@@ -32,16 +32,21 @@ public class GoogleImageClient {
     }
 
     public void fetchImages(CallbackActivity activity, String query){
-        this.fetchImages(activity, query, 8);
+        this.fetchImages(activity, query, 8, 0);
     }
 
-    public void fetchImages(final CallbackActivity activity, String query, int size){
+    public void fetchImages(CallbackActivity activity, String query, int startIndex){
+        this.fetchImages(activity, query, 8, startIndex);
+    }
+
+    public void fetchImages(final CallbackActivity activity, String query, int size, int startIndex){
         AsyncHttpClient client = new AsyncHttpClient();
         StringBuilder url = new StringBuilder("https://ajax.googleapis.com/ajax/services/search/images?");
         try{
             url.append("q=" + URLEncoder.encode(query, "UTF-8"));
             url.append("&v=1.0");
             url.append("&rsz=" + size);
+            url.append("&start=" + startIndex);
         }catch (UnsupportedEncodingException ex){
             Log.i("ERROR", "Query couldnt be URL encoded");
             ex.printStackTrace();

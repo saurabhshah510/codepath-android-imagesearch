@@ -13,6 +13,7 @@ import com.myapp.sshah.gimagesearch.R;
 import com.myapp.sshah.gimagesearch.adapters.ImageResultsAdapter;
 import com.myapp.sshah.gimagesearch.api.GoogleImageClient;
 import com.myapp.sshah.gimagesearch.models.GoogleImage;
+import com.myapp.sshah.gimagesearch.views.EndlessScrollListener;
 
 import java.util.ArrayList;
 
@@ -30,6 +31,14 @@ public class SearchActivity extends AppCompatActivity implements CallbackActivit
         imageResults = new ArrayList<>();
         aImageResults = new ImageResultsAdapter(this, imageResults);
         gvSearchResults.setAdapter(aImageResults);
+        final SearchActivity currentObj = this;
+        gvSearchResults.setOnScrollListener(new EndlessScrollListener() {
+            @Override
+            public boolean onLoadMore(int page, int totalItemsCount) {
+                GoogleImageClient.getSharedClient().fetchImages(currentObj, etSearchQuery.getText().toString(), page);
+                return true;
+            }
+        });
         gvSearchResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -47,6 +56,7 @@ public class SearchActivity extends AppCompatActivity implements CallbackActivit
     }
 
     public void onClickSearch(View view) {
+        aImageResults.clear();
         String query = etSearchQuery.getText().toString();
         GoogleImageClient.getSharedClient().fetchImages(this, query);
     }
@@ -55,7 +65,6 @@ public class SearchActivity extends AppCompatActivity implements CallbackActivit
     public void onFetchSuccess(ArrayList<GoogleImage> fetchedImageResults) {
         Log.i("DEBUG", "Adding " + fetchedImageResults.size() + " Photos");
         //Clear in case of new search
-        imageResults.clear();
         aImageResults.addAll(fetchedImageResults);
     }
 
