@@ -6,6 +6,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.myapp.sshah.gimagesearch.activities.CallbackActivity;
 import com.myapp.sshah.gimagesearch.models.GoogleImage;
+import com.myapp.sshah.gimagesearch.models.Settings;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,12 +32,12 @@ public class GoogleImageClient {
         return sharedClient;
     }
 
-    public void fetchImages(CallbackActivity activity, String query){
-        this.fetchImages(activity, query, 1);
+    public void fetchImages(CallbackActivity activity, String query, Settings settings){
+        this.fetchImages(activity, query, 1, settings);
     }
 
 
-    public void fetchImages(final CallbackActivity activity, String query, int page){
+    public void fetchImages(final CallbackActivity activity, String query, int page, Settings settings){
         AsyncHttpClient client = new AsyncHttpClient();
         int size = 8;
         StringBuilder url = new StringBuilder("https://ajax.googleapis.com/ajax/services/search/images?");
@@ -45,6 +46,7 @@ public class GoogleImageClient {
             url.append("&v=1.0");
             url.append("&rsz=" + size);
             url.append("&start=" + (page - 1) * size);
+            url.append("&imgsz=" + settings.getSize());
         }catch (UnsupportedEncodingException ex){
             Log.i("ERROR", "Query couldnt be URL encoded");
             ex.printStackTrace();

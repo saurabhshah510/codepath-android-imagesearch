@@ -9,7 +9,6 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.myapp.sshah.gimagesearch.R;
 import com.myapp.sshah.gimagesearch.adapters.ImageResultsAdapter;
@@ -48,7 +47,7 @@ public class SearchActivity extends AppCompatActivity implements CallbackActivit
         gvSearchResults.setOnScrollListener(new EndlessScrollListener() {
             @Override
             public boolean onLoadMore(int page, int totalItemsCount) {
-                GoogleImageClient.getSharedClient().fetchImages(currentObj, etSearchQuery.getText().toString(), page);
+                GoogleImageClient.getSharedClient().fetchImages(currentObj, etSearchQuery.getText().toString(), page, settings);
                 return true;
             }
         });
@@ -74,14 +73,14 @@ public class SearchActivity extends AppCompatActivity implements CallbackActivit
     public void onClickSearch(View view) {
         aImageResults.clear();
         String query = etSearchQuery.getText().toString();
-        GoogleImageClient.getSharedClient().fetchImages(this, query);
+        GoogleImageClient.getSharedClient().fetchImages(this, query, settings);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == RESULT_OK && requestCode == REQUEST_CODE){
             this.settings = (Settings)data.getSerializableExtra("settingsObject");
-            Toast.makeText(this, "Setting changed", Toast.LENGTH_SHORT).show();
+            onClickSearch(null);
         }
     }
 
