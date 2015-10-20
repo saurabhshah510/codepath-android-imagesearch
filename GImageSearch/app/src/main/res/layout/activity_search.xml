@@ -24,8 +24,19 @@
         android:text="@string/search_button_text"
         android:id="@+id/btnSearch"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@id/ivSettingsIcon"
+        android:layout_toLeftOf="@+id/ivSettingsIcon"
         android:onClick="onClickSearch"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivSettingsIcon"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@+id/btnSearch"
+        android:src="@mipmap/ic_launcher" />
+
 
     <GridView
         android:layout_width="wrap_content"
@@ -38,14 +49,4 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:numColumns="2" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ivSettingsIcon"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignBottom="@+id/btnSearch"
-        android:src="@mipmap/ic_launcher" />
 </RelativeLayout>

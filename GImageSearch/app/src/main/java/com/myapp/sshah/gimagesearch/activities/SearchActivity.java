@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
 
 import com.myapp.sshah.gimagesearch.R;
 import com.myapp.sshah.gimagesearch.adapters.ImageResultsAdapter;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 public class SearchActivity extends AppCompatActivity implements CallbackActivity {
     private EditText etSearchQuery;
     private GridView gvSearchResults;
+    private ImageView ivSettingsIcon;
     private ArrayList<GoogleImage> imageResults;
     private ImageResultsAdapter aImageResults;
 
@@ -31,6 +33,12 @@ public class SearchActivity extends AppCompatActivity implements CallbackActivit
         imageResults = new ArrayList<>();
         aImageResults = new ImageResultsAdapter(this, imageResults);
         gvSearchResults.setAdapter(aImageResults);
+    }
+
+    private void setupViews(){
+        etSearchQuery = (EditText)findViewById(R.id.etQuery);
+        gvSearchResults = (GridView)findViewById(R.id.gvSearchResults);
+        ivSettingsIcon = (ImageView)findViewById(R.id.ivSettingsIcon);
         final SearchActivity currentObj = this;
         gvSearchResults.setOnScrollListener(new EndlessScrollListener() {
             @Override
@@ -48,11 +56,13 @@ public class SearchActivity extends AppCompatActivity implements CallbackActivit
                 startActivity(i);
             }
         });
-    }
-
-    private void setupViews(){
-        etSearchQuery = (EditText)findViewById(R.id.etQuery);
-        gvSearchResults = (GridView)findViewById(R.id.gvSearchResults);
+        ivSettingsIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), MenuActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     public void onClickSearch(View view) {
