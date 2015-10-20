@@ -9,11 +9,13 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.myapp.sshah.gimagesearch.R;
 import com.myapp.sshah.gimagesearch.adapters.ImageResultsAdapter;
 import com.myapp.sshah.gimagesearch.api.GoogleImageClient;
 import com.myapp.sshah.gimagesearch.models.GoogleImage;
+import com.myapp.sshah.gimagesearch.models.Settings;
 import com.myapp.sshah.gimagesearch.views.EndlessScrollListener;
 
 import java.util.ArrayList;
@@ -24,11 +26,14 @@ public class SearchActivity extends AppCompatActivity implements CallbackActivit
     private ImageView ivSettingsIcon;
     private ArrayList<GoogleImage> imageResults;
     private ImageResultsAdapter aImageResults;
+    private Settings settings;
+    private final int REQUEST_CODE = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        settings = new Settings();
         setupViews();
         imageResults = new ArrayList<>();
         aImageResults = new ImageResultsAdapter(this, imageResults);
@@ -60,7 +65,8 @@ public class SearchActivity extends AppCompatActivity implements CallbackActivit
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), MenuActivity.class);
-                startActivity(i);
+                i.putExtra("settingsObject", settings);
+                startActivityForResult(i, REQUEST_CODE);
             }
         });
     }
@@ -69,6 +75,14 @@ public class SearchActivity extends AppCompatActivity implements CallbackActivit
         aImageResults.clear();
         String query = etSearchQuery.getText().toString();
         GoogleImageClient.getSharedClient().fetchImages(this, query);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK && requestCode == REQUEST_CODE){
+            this.settings = (Settings)data.getSerializableExtra("settingsObject");
+            Toast.makeText(this, "Setting changed", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
