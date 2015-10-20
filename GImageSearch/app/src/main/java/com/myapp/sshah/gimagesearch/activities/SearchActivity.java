@@ -1,9 +1,11 @@
 package com.myapp.sshah.gimagesearch.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
 
@@ -28,6 +30,15 @@ public class SearchActivity extends AppCompatActivity implements CallbackActivit
         imageResults = new ArrayList<>();
         aImageResults = new ImageResultsAdapter(this, imageResults);
         gvSearchResults.setAdapter(aImageResults);
+        gvSearchResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(getApplicationContext(), ImageDisplayActivity.class);
+                GoogleImage image = imageResults.get(position);
+                i.putExtra("url", image.fullUrl);
+                startActivity(i);
+            }
+        });
     }
 
     private void setupViews(){
