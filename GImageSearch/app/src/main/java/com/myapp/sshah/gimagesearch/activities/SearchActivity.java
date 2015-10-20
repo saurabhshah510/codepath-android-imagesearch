@@ -35,7 +35,7 @@ public class SearchActivity extends AppCompatActivity implements CallbackActivit
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(getApplicationContext(), ImageDisplayActivity.class);
                 GoogleImage image = imageResults.get(position);
-                i.putExtra("url", image.fullUrl);
+                i.putExtra("imageObject", image);
                 startActivity(i);
             }
         });

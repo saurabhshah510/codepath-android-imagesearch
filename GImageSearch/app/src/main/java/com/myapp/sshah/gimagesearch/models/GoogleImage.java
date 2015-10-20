@@ -4,12 +4,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by sshah1 on 10/18/15.
  */
-public class GoogleImage {
+public class GoogleImage implements Serializable{
     public String thumbUrl;
     public String fullUrl;
     public String title;
