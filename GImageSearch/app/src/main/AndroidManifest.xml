@@ -19,6 +19,8 @@
         </activity>
         <activity android:name=".activities.ImageDisplayActivity" >
         </activity>
+        <activity android:name=".activities.MenuActivity" >
+        </activity>
     </application>
 
 </manifest>
