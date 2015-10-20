@@ -11,12 +11,12 @@ The following **required** functionality is completed:
 
 * [x] User can **search for images** by specifying a query and launching a search. Search displays a grid of image results from the Google Image API.
 * [ ] User can click on "settings" which allows selection of **advanced search options** to filter results
-* [ ] User can configure advanced search filters such as:
-  * [ ] Size (small, medium, large, extra-large)
+* [x] User can configure advanced search filters such as:
+  * [x] Size (small, medium, large, extra-large)
   * [ ] Color filter (black, blue, brown, gray, green, etc...)
   * [ ] Type (faces, photo, clip art, line art)
   * [ ] Site (espn.com)
-* [ ] Subsequent searches have any filters applied to the search results
+* [x] Subsequent searches have any filters applied to the search results
 * [x] User can tap on any image in results to see the image **full-screen**
 * [x] User can **scroll down to see more images**. The maximum number of images is 64 (limited by API).
 
@@ -40,10 +40,8 @@ The following **additional** features are implemented:
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories:
+![Video Walkthrough](image_search.gif)
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
@@ -56,7 +54,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright 2015 Saurabh Bharat Shah
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
